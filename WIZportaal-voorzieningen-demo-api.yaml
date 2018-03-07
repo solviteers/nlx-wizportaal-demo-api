@@ -1,0 +1,128 @@
+swagger: "2.0"
+info:
+  description: "Dit is de demo-API voor het bevragen van WIZportaal voorzieningen"
+  version: "1.0.0"
+  title: "NLX Demo WIZportaal voorzieningen"
+  contact:
+    email: "helpdesk@solviteers.nl"
+host: "wizportaal-nlx.example.com"
+basePath: "/v1"
+tags:
+- name: "natuurlijkePersonen"
+  description: "Toon de persoonsinformatie uit WIZportaal"
+  externalDocs:
+    description: "Meer info"
+    url: "https://github.com/solviteers"
+- name: "producten"
+  description: "Toon de producten in WIZportaal voor een persoon"
+  externalDocs:
+    description: "Meer info"
+    url: "https://github.com/solviteers"
+schemes:
+- "https"
+paths:
+  /natuurlijkePersonen/getNatuurlijkPersoonObvBsn/{bsn}/producten:
+    get:
+      tags:
+      - "natuurlijkePersonen"
+      summary: "Toon producten bij een persoon"
+      description: "Haalt alle succesvol bestelde voorzieningen uit WIZportaal op op basis van het bsn"
+      operationId: "getProductenObvPersoon"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "bsn"
+        in: "path"
+        description: "Burgerservicenummer"
+        required: true
+        type: "integer"
+        format: "int9"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/NatuurlijkPersoon"
+        404:
+          description: "Geen gegevens gevonden"
+  /producten/{id}:
+    get:
+      tags:
+      - "producten"
+      summary: "Finds Pets by status"
+      description: "Multiple status values can be provided with comma separated strings"
+      operationId: "findPetsByStatus"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Het product id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Producten gevonden"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Product"
+        404:
+          description: "Product niet gevonden"
+
+definitions:
+  NatuurlijkPersoon:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        format: "guid"
+      bsn:
+        type: "integer"
+        format: "int9"
+      producten:
+        $ref: "#/definitions/Product"
+  Product:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        format: "guid"
+      type:
+        type: "string"
+        enum:
+        - "jw"
+        - "wmo"
+      beschrijving:
+        type: "string"
+      beginDatum:
+        type: "string"
+        format: "date"
+      eindDatum:
+        type: "string"
+        format: "date"
+      leverancier:
+        type: "string"
+      leveringsvorm:
+        type: "string"
+      volume:
+        type: "integer"
+        minimum: 0
+        maximum: 99999999
+      eenheid:
+        type: "integer"
+        minimum: 0
+        maximum: 99
+      frequentie:
+        type: "string"
+        enum:
+          - "Per dag"
+          - "Per week"
+          - "Per vier weken"
+          - "Per maand"
+          - "Per jaar"
+          - "Totaal binnen geldigheidsduur beschikking"

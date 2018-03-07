@@ -1,0 +1,17 @@
+// Get: activities/{id}
+{
+    "producten": [
+        {
+            "id": "int",
+            "type": "wmo",
+            "beschrijving": "string",
+            "beginDatum": "date",
+            "eindDatum": "date",
+            "leverancier": "string",
+            "leveringsvorm": "string",
+            "volume": "int",
+            "eenheid": "string",
+            "frequentie": "int"
+        }
+    ]
+},

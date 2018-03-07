@@ -1,0 +1,31 @@
+// Get: clients/getClientByBsn/{bsn}/activities
+{
+    "id": "guid",
+    "bsn": "int",
+    "producten": [
+        {
+            "id": "int",
+            "type": "wmo",
+            "beschrijving": "string",
+            "beginDatum": "date",
+            "eindDatum": "date",
+            "leverancier": "string",
+            "leveringsvorm": "string",
+            "volume": "int",
+            "eenheid": "string",
+            "frequentie": "int"
+        },
+        {
+            "id": "int",
+            "type": "jw",
+            "beschrijving": "string",
+            "beginDatum": "date",
+            "eindDatum": "date",
+            "leverancier": "string",
+            "leveringsvorm": "string",
+            "volume": "int",
+            "eenheid": "string",
+            "frequentie": "int"
+        },
+    ]
+},
