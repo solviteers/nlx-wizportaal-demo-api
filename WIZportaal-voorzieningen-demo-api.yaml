@@ -113,11 +113,16 @@ definitions:
         type: "integer"
         minimum: 0
         maximum: 99999999
-      eenheid:
-        type: "integer"
-        minimum: 0
-        maximum: 99
-      frequentie:
+      eenheidOmschrijving:
+        type: "string"
+        enum:
+          - "Minuut"
+          - "Uur"
+          - "Etmaal"
+          - "Dagdeel (4 uur)"
+          - "Stuks"
+          - "Euro's"
+      frequentieOmschrijving:
         type: "string"
         enum:
           - "Per dag"
